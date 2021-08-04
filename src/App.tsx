@@ -25,7 +25,11 @@ function App() {
     <>
       <PipeList pipes={pipeData} handlePipeClicked={handlePipeClicked} />
       {showCardsModal && (
-        <CardsModal cards={cardsData} setShowCardsModal={setShowCardsModal} />
+        <CardsModal
+          cardsLoading={cardsLoading}
+          cards={cardsData}
+          setShowCardsModal={setShowCardsModal}
+        />
       )}
     </>
   );

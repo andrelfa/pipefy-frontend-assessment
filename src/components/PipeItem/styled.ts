@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: calc(17% - 10px);
-  background-color: #f1fae9;
+  background-color: ${(props) => props.theme.colors.frost};
   margin-bottom: 5px;
   margin: 20px;
   border-radius: 10px;
@@ -32,7 +32,7 @@ export const IconContainer = styled.div`
 `;
 
 export const CardsCountText = styled.p`
-  color: #737373;
+  color: ${(props) => props.theme.colors.doveGray};
   margin-top: auto;
   font-weight: 500;
 `;
