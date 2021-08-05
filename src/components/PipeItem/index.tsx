@@ -18,7 +18,7 @@ export default function PipeItem({ pipe, handlePipeClicked }: PipeItemProps) {
     pipe.cardsCount > 1 || pipe.cardsCount === 0 ? "cards" : "card";
 
   return (
-    <Wrapper onClick={() => handlePipeClicked(pipe.id)}>
+    <Wrapper onClick={() => handlePipeClicked(pipe.id)} aria-label="pipe-item">
       <IconContainer>
         <PiledCoinsIcon />
       </IconContainer>

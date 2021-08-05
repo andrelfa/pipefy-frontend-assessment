@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import CardsModal from "./components/CardsModal/CardsModal";
-import { Button, EndOfListText, Wrapper } from "./styled";
-import PipeList from "./components/PipeList/PipeList";
+import CardsModal from "./components/CardsModal";
+import { Wrapper } from "./styled";
+import PipeList from "./components/PipeList";
 import useGetCards from "./lib/graphql/hooks/useGetCards";
 import useGetOrganizationPipes from "./lib/graphql/hooks/useGetOrganizationPipes";
 import { Pipe } from "./types/Pipe";
@@ -25,26 +25,16 @@ function App() {
     loadCards();
   };
 
-  const handleLoadMore = () => {
-    const currentLastItem = pipes[pipes.length - 1];
-    const currentLastIndex = pipes.indexOf(currentLastItem);
-    setPipes((currentPipes) =>
-      currentPipes.concat(
-        pipeData.slice(currentLastIndex + 1, currentLastIndex + 10)
-      )
-    );
-  };
-
   if (pipeErrors) return <p>Something went wrong</p>;
   if (pipeLoading) return <p>Loading...</p>;
   return (
     <Wrapper>
-      <PipeList pipes={pipes} handlePipeClicked={handlePipeClicked} />
-      {pipes.length === pipeData.length ? (
-        <EndOfListText>No more pipes to load.</EndOfListText>
-      ) : (
-        <Button onClick={handleLoadMore}>+</Button>
-      )}
+      <PipeList
+        pipes={pipes}
+        handlePipeClicked={handlePipeClicked}
+        pipeData={pipeData}
+        setPipes={setPipes}
+      />
       {showCardsModal && (
         <CardsModal
           cardsLoading={cardsLoading}
