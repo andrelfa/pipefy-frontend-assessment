@@ -1,6 +1,6 @@
 import { Pipe } from "../../types/Pipe";
 import PipeItem from "../PipeItem/PipeItem";
-import { PipeItemsWrapper, Wrapper } from "./styled";
+import { PipeItemsWrapper } from "./styled";
 
 type PipeListProps = {
   pipes: Pipe[];
@@ -10,7 +10,7 @@ type PipeListProps = {
 export default function PipeList({ pipes, handlePipeClicked }: PipeListProps) {
   return (
     <>
-      <Wrapper>
+      <div>
         Your Pipes
         <PipeItemsWrapper>
           {pipes.map((pipe) => (
@@ -21,7 +21,7 @@ export default function PipeList({ pipes, handlePipeClicked }: PipeListProps) {
             />
           ))}
         </PipeItemsWrapper>
-      </Wrapper>
+      </div>
     </>
   );
 }

@@ -12,6 +12,13 @@ export const Wrapper = styled.div`
   text-align: center;
   flex-flow: column;
   min-height: 160px;
+  box-shadow: ${(props) => props.theme.shadows.default};
+  cursor: pointer;
+  transition: 0.3s background-color;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors.teaGreen};
+  }
 `;
 
 export const NameContainer = styled.div`
