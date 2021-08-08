@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useCallback } from "react";
 import { Pipe } from "../../types/Pipe";
 import PipeItem from "../PipeItem";
-import { PipeItemsWrapper, Button, EndOfListText } from "./styled";
+import { PipeItemsWrapper, Button, MarginLeftText } from "./styled";
 
 type PipeListProps = {
   pipes: Pipe[];
@@ -40,14 +40,18 @@ export default function PipeList({
           ))}
         </PipeItemsWrapper>
         {pipes.length === pipeData.length ? (
-          <EndOfListText aria-label="no-more-pipes">
+          <MarginLeftText aria-label="no-more-pipes">
             No more pipes to load.
-          </EndOfListText>
+          </MarginLeftText>
         ) : (
           <Button onClick={handleLoadMore} aria-label="load-more-btn">
             +
           </Button>
         )}
+        <MarginLeftText>
+          {pipes.length} of{" "}
+          <strong aria-label="total-of-pipes">{pipeData.length}</strong>
+        </MarginLeftText>
       </div>
     </>
   );

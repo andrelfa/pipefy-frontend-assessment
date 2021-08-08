@@ -23,6 +23,6 @@ export const Button = styled.button`
   }
 `;
 
-export const EndOfListText = styled.p`
+export const MarginLeftText = styled.p`
   margin-left: 20px;
 `;
