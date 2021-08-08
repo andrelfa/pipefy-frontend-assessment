@@ -1,20 +1,24 @@
+import { ApolloError } from "@apollo/client";
 import { Dispatch, SetStateAction } from "react";
-import { Node } from "../../types/Cards";
+import { CardNode } from "../../types/Cards";
 import { formatDate } from "../../utils/formatter";
 import { Backdrop, Container } from "./styled";
 
 type CardsModalProps = {
   setShowCardsModal: Dispatch<SetStateAction<boolean>>;
-  cards: Node[];
+  cards: CardNode[];
   cardsLoading: boolean;
+  error: ApolloError | undefined;
 };
 
 export default function CardsModal({
   setShowCardsModal,
   cards,
   cardsLoading,
+  error,
 }: CardsModalProps) {
-  function handleCardsDisplay(cards: Node[]) {
+  function handleCardsDisplay(cards: CardNode[]) {
+    if (error) return <p>Couldn't load the cards</p>;
     return (
       <>
         {cards.length && !cardsLoading ? (

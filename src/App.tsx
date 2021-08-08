@@ -12,9 +12,11 @@ function App() {
   const [selectedPipeId, setSelectedPipeId] = useState("");
   const [pipes, setPipes] = useState<Pipe[]>([]);
 
-  const { pipeLoading, pipeErrors, pipeData } = useGetOrganizationPipes();
-  const { loadCards, cardsLoading, cardsData } = useGetCards(selectedPipeId);
+  const { pipeLoading, pipeError, pipeData } = useGetOrganizationPipes();
+  const { loadCards, cardsLoading, cardsError, cardsData } =
+    useGetCards(selectedPipeId);
 
+  // Handling client side pagination
   useEffect(() => {
     setPipes(pipeData.slice(0, 10));
   }, [pipeData]);
@@ -28,7 +30,7 @@ function App() {
     [setSelectedPipeId, setShowCardsModal, loadCards]
   );
 
-  if (pipeErrors) return <p>Something went wrong</p>;
+  if (pipeError) return <p>Something went wrong</p>;
   if (pipeLoading) return <p>Loading...</p>;
   return (
     <Wrapper>
@@ -43,6 +45,7 @@ function App() {
           cardsLoading={cardsLoading}
           cards={cardsData}
           setShowCardsModal={setShowCardsModal}
+          error={cardsError}
         />
       )}
     </Wrapper>

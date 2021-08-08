@@ -16,6 +16,7 @@ export default function PipeList({
   pipeData,
   setPipes,
 }: PipeListProps) {
+  // Handling client side pagination
   const handleLoadMore = useCallback(() => {
     const currentLastItem = pipes[pipes.length - 1];
     const currentLastIndex = pipes.indexOf(currentLastItem);

@@ -1,9 +1,16 @@
-import { useQuery } from "@apollo/client";
+import { ApolloError, useQuery } from "@apollo/client";
 import { useMemo } from "react";
+import { Pipe } from "../../../types/Pipe";
 import { keysToCamelCase, sortPipesByName } from "../../../utils/helpers";
 import GET_ORGANIZATIONS from "../queries/getOrganization";
 
-export default function useGetOrganizationPipes() {
+type UseGetOrganizationPipesType = {
+  pipeData: Pipe[];
+  pipeLoading: boolean;
+  pipeError: ApolloError | undefined;
+};
+
+export default function useGetOrganizationPipes(): UseGetOrganizationPipesType {
   const { loading, error, data } = useQuery(GET_ORGANIZATIONS, {
     variables: { id: "300562393" },
   });
@@ -19,6 +26,6 @@ export default function useGetOrganizationPipes() {
   return {
     pipeData: memoizedData,
     pipeLoading: loading,
-    pipeErrors: error,
+    pipeError: error,
   };
 }

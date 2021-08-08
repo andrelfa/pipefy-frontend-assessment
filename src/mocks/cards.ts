@@ -1,6 +1,6 @@
-import { Node } from "../types/Cards";
+import { CardNode } from "../types/Cards";
 
-export const mockedCards: Node[] = [
+export const mockedCards: CardNode[] = [
   {
     id: "1",
     createdAt: new Date().toISOString(),

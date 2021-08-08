@@ -3,10 +3,10 @@ export type Cards = {
 };
 
 export type Edge = {
-  node: Node;
+  node: CardNode;
 };
 
-export type Node = {
+export type CardNode = {
   id: string;
   createdAt: string;
   title: string;

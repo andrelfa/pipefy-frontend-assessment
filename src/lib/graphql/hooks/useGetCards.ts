@@ -4,12 +4,12 @@ import {
   QueryLazyOptions,
   useLazyQuery,
 } from "@apollo/client";
-import { Node } from "../../../types/Cards";
+import { CardNode } from "../../../types/Cards";
 import { keysToCamelCase } from "../../../utils/helpers";
 import GET_CARDS, { GetCardsType } from "../queries/getCards";
 
 type UseGetCards = {
-  cardsData: Node[];
+  cardsData: CardNode[];
   cardsLoading: boolean;
   cardsError: ApolloError | undefined;
   loadCards: (
@@ -29,7 +29,7 @@ export default function useGetCards(pipeId: string): UseGetCards {
     cardsData: data?.cards?.edges.length
       ? (data?.cards?.edges
           .map((item) => item.node)
-          .map(keysToCamelCase) as Node[])
+          .map(keysToCamelCase) as CardNode[])
       : [],
     cardsLoading: loading,
     cardsError: error,
