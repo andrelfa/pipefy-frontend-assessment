@@ -42,7 +42,7 @@ export default function PipeList({
         </PipeItemsWrapper>
         {pipes.length === pipeData.length ? (
           <MarginLeftText aria-label="no-more-pipes">
-            No more pipes to load.
+            No more pipes to show.
           </MarginLeftText>
         ) : (
           <Button onClick={handleLoadMore} aria-label="load-more-btn">

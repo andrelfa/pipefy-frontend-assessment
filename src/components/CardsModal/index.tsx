@@ -30,7 +30,7 @@ export default function CardsModal({
             ))}
           </>
         ) : (
-          <p>No cards to show</p>
+          <p aria-label={"no-more-cards"}>No cards to show</p>
         )}
       </>
     );

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  width: calc(17% - 10px);
+  width: 100%;
   background-color: ${(props) => props.theme.colors.frost};
   margin-bottom: 5px;
   margin: 20px;
@@ -18,6 +18,14 @@ export const Wrapper = styled.div`
 
   &:hover {
     background-color: ${(props) => props.theme.colors.teaGreen};
+  }
+
+  @media (min-width: 768px) {
+    width: calc(40% - 10px);
+  }
+
+  @media (min-width: 1000px) {
+    width: calc(17% - 10px);
   }
 `;
 

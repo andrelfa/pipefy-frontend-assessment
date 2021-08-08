@@ -24,7 +24,8 @@ describe("Landing Page", () => {
     });
   });
 
-  it(`Click on the 'load-more-btn' and check if more card were rendered`, () => {
+  it(`Click on the 'load-more-btn' and check if more card were rendered, 
+  after all of them are rendered, check for 'no-more-pipes' text`, () => {
     cy.get(`[aria-label="pipe-item"]`).should("be.visible");
     cy.get(`[aria-label="pipe-item"]`).its("length").should("be.gte", 1);
     cy.get(`[aria-label="load-more-btn"]`).then((button) => {
@@ -39,5 +40,7 @@ describe("Landing Page", () => {
           pipesOnTheScreen + Cypress.$(`[aria-label="pipe-item"]`).length;
       }
     });
+    // cy.wait(3000);
+    cy.get(`[aria-label="no-more-pipes"]`).should("be.visible");
   });
 });
