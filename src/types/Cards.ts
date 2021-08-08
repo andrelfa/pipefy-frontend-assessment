@@ -8,6 +8,6 @@ export type Edge = {
 
 export type Node = {
   id: string;
-  created_at: string;
+  createdAt: string;
   title: string;
 };

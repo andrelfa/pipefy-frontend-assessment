@@ -1,10 +1,16 @@
 type PiledCoinsIconProps = {
   color?: string;
+  label?: string;
 };
 
-function PiledCoinsIcon({ color }: PiledCoinsIconProps) {
+function PiledCoinsIcon({ color, label }: PiledCoinsIconProps) {
   return (
-    <svg viewBox="0 0 48 48" fill="#000" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      viewBox="0 0 48 48"
+      fill="#000"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-label={label}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"

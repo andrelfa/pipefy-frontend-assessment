@@ -20,8 +20,8 @@ export default function CardsModal({
         {cards.length && !cardsLoading ? (
           <>
             {cards.map((card) => (
-              <p key={card.id}>
-                {formatDate(card.created_at)} - {card.title}
+              <p key={card.id} aria-label={"card-item"}>
+                {formatDate(card.createdAt)} - {card.title}
               </p>
             ))}
           </>

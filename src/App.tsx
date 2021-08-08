@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import CardsModal from "./components/CardsModal";
 import { Wrapper } from "./styled";
@@ -19,11 +19,14 @@ function App() {
     setPipes(pipeData.slice(0, 10));
   }, [pipeData]);
 
-  const handlePipeClicked = (pipeId: string) => {
-    setSelectedPipeId(pipeId);
-    setShowCardsModal(true);
-    loadCards();
-  };
+  const handlePipeClicked = useCallback(
+    (pipeId: string) => {
+      setSelectedPipeId(pipeId);
+      setShowCardsModal(true);
+      loadCards();
+    },
+    [setSelectedPipeId, setShowCardsModal, loadCards]
+  );
 
   if (pipeErrors) return <p>Something went wrong</p>;
   if (pipeLoading) return <p>Loading...</p>;

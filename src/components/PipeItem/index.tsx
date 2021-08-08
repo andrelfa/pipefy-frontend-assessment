@@ -20,12 +20,12 @@ export default function PipeItem({ pipe, handlePipeClicked }: PipeItemProps) {
   return (
     <Wrapper onClick={() => handlePipeClicked(pipe.id)} aria-label="pipe-item">
       <IconContainer>
-        <PiledCoinsIcon />
+        <PiledCoinsIcon label={"pipe-icon"} />
       </IconContainer>
       <NameContainer>
-        <NameText>{pipe.name}</NameText>
+        <NameText aria-label={"pipe-name"}>{pipe.name}</NameText>
       </NameContainer>
-      <CardsCountText>
+      <CardsCountText aria-label={"pipe-cards-count"}>
         {pipe.cardsCount} {cardsConditionalText}
       </CardsCountText>
     </Wrapper>

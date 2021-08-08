@@ -33,9 +33,11 @@ const setup = () => {
   const utils = render(<PipeListWrapper />);
   const pipes = utils.queryAllByLabelText("pipe-item");
   const loadMoreBtn = utils.getByLabelText("load-more-btn");
+  const numberOfPages = Math.ceil(mockedPipes.length / 10);
   return {
     pipes,
     loadMoreBtn,
+    numberOfPages,
     ...utils,
   };
 };
@@ -46,46 +48,32 @@ describe("<PipeList>", () => {
     expect(container).toBeInTheDocument();
   });
 
-  it("should render the first 10 pipes", () => {
+  it("should render the first set/page of pipes (10 pipes)", () => {
     const { pipes } = setup();
     expect(pipes).toHaveLength(10);
   });
 
-  it("should render 10 more pipes after button is clicked", async () => {
-    const { pipes, loadMoreBtn } = setup();
+  it("should render more pipes after button is clicked if there are more pipes to show", async () => {
+    const { pipes, loadMoreBtn, numberOfPages } = setup();
     expect(pipes).toHaveLength(10);
-    fireEvent.click(loadMoreBtn);
+    for (let i = 1; i <= numberOfPages; i++) {
+      fireEvent.click(loadMoreBtn);
+    }
     setTimeout(() => {
-      expect(pipes).toHaveLength(20);
+      expect(pipes).toHaveLength(mockedPipes.length);
     }, 2000);
   });
 
-  it("should render all 24 pipes after button is clicked twice", async () => {
-    const { pipes, loadMoreBtn } = setup();
-    expect(pipes).toHaveLength(10);
-    fireEvent.click(loadMoreBtn);
-    setTimeout(() => {
-      expect(pipes).toHaveLength(20);
-    }, 2000);
-    fireEvent.click(loadMoreBtn);
-    setTimeout(() => {
-      expect(pipes).toHaveLength(24);
-    }, 2000);
-  });
-
-  it(`should hide 'load-more-btn' and display 'no-more-pipes' message 
+  it(`should hide 'load-more-btn' and display 'no-more-pipes' message
   after all pipes have been rendered`, async () => {
-    const { pipes, loadMoreBtn } = setup();
+    const { pipes, loadMoreBtn, numberOfPages } = setup();
     expect(pipes).toHaveLength(10);
-    fireEvent.click(loadMoreBtn);
+    for (let i = 1; i <= numberOfPages; i++) {
+      fireEvent.click(loadMoreBtn);
+    }
     setTimeout(() => {
-      expect(pipes).toHaveLength(20);
+      expect(pipes).toHaveLength(mockedPipes.length);
     }, 2000);
-    fireEvent.click(loadMoreBtn);
-    setTimeout(() => {
-      expect(pipes).toHaveLength(24);
-    }, 2000);
-    expect(loadMoreBtn).not.toBeInTheDocument();
     const noMorePipesText = setup().getByLabelText("no-more-pipes");
     expect(noMorePipesText).toBeInTheDocument();
   });

@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useCallback } from "react";
 import { Pipe } from "../../types/Pipe";
 import PipeItem from "../PipeItem";
 import { PipeItemsWrapper, Button, EndOfListText } from "./styled";
@@ -16,7 +16,7 @@ export default function PipeList({
   pipeData,
   setPipes,
 }: PipeListProps) {
-  const handleLoadMore = () => {
+  const handleLoadMore = useCallback(() => {
     const currentLastItem = pipes[pipes.length - 1];
     const currentLastIndex = pipes.indexOf(currentLastItem);
     setPipes((currentPipes) =>
@@ -24,7 +24,7 @@ export default function PipeList({
         pipeData.slice(currentLastIndex + 1, currentLastIndex + 10)
       )
     );
-  };
+  }, [pipes, pipeData, setPipes]);
 
   return (
     <>
