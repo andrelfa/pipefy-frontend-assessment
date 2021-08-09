@@ -40,7 +40,6 @@ describe("Landing Page", () => {
           pipesOnTheScreen + Cypress.$(`[aria-label="pipe-item"]`).length;
       }
     });
-    // cy.wait(3000);
     cy.get(`[aria-label="no-more-pipes"]`).should("be.visible");
   });
 });
